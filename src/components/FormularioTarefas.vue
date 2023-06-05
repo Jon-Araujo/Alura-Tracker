@@ -17,6 +17,7 @@
 
     export default defineComponent({
         name: 'FormularioTarefas',
+        emits: ['aoSalvarTarefa'],
         components: {
             TemporizaTempo
         },
@@ -27,7 +28,10 @@
         },
         methods: {
             finalizarTarefa (tempoDecorrido: number) : void {
-                alert(this.descricao)
+                this.$emit('aoSalvarTarefa', {
+                    duracaoEmSegundos: tempoDecorrido,
+                    descricao: this.descricao
+                })
                 this.descricao = ''
             }
         }
